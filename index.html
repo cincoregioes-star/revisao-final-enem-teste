@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Revisão Final ENEM Teste Grátis</title>
+
+<style>
+:root{--card:#11141b;--card2:#171b24;--blue:#00f3ff;--pink:#ff00e6;--green:#39ff14;--red:#ff003c;--yellow:#ffd400;--muted:#cfcfcf;--line:rgba(255,255,255,.08);--lock:#6b7280}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,Helvetica,sans-serif}
+body{background:#000;color:#fff;min-height:100vh;padding:14px 10px 40px;text-align:center;overflow-x:hidden}
+header{max-width:1100px;margin:0 auto 22px;border:2px solid var(--blue);border-radius:24px;padding:22px 14px;background:linear-gradient(180deg,#0c0f16,#090b11);box-shadow:0 0 22px rgba(0,243,255,.22)}
+header h1{color:var(--blue);font-size:clamp(1.8rem,5vw,3rem);text-shadow:0 0 14px rgba(0,243,255,.7);font-weight:900}
+header p{margin-top:10px;color:var(--pink);font-weight:800;font-size:clamp(.95rem,3vw,1.2rem)}
+#app{width:100%;max-width:1100px;margin:0 auto}
+.box{width:100%;background:linear-gradient(180deg,var(--card),var(--card2));border:1px solid var(--line);border-radius:20px;padding:18px 12px;box-shadow:0 0 20px rgba(0,0,0,.35);overflow:hidden}
+.btn{display:block;width:100%;max-width:620px;margin:10px auto;padding:14px 14px;border:2px solid var(--blue);background:transparent;color:#fff;border-radius:12px;cursor:pointer;font-weight:800;font-size:1rem;line-height:1.45;transition:.2s;white-space:normal;word-break:break-word}
+.btn:hover:not(:disabled){background:var(--blue);color:#000;box-shadow:0 0 18px rgba(0,243,255,.35)}
+.btn-lock{border-color:var(--lock);color:#d1d5db;background:rgba(255,255,255,.03)}
+.btn-lock:hover{background:rgba(255,255,255,.08);color:#fff;box-shadow:none}
+.btn-premium{border-color:var(--yellow);color:var(--yellow)}
+.btn-premium:hover:not(:disabled){background:var(--yellow);color:#000;box-shadow:0 0 18px rgba(255,212,0,.35)}
+.btn-voltar{border-color:#666;color:#ddd}.btn-voltar:hover:not(:disabled){background:#333;color:#fff;box-shadow:none}
+.btn-next{border-color:var(--pink);background:linear-gradient(135deg,rgba(255,0,230,.18),rgba(0,243,255,.08))}
+.btn.correct{background:var(--green)!important;border-color:var(--green)!important;color:#000!important}
+.btn.wrong{background:var(--red)!important;border-color:var(--red)!important;color:#fff!important}
+.grid-areas{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:18px}
+.card-area{background:linear-gradient(135deg,rgba(0,243,255,.08),rgba(255,0,230,.08));border:1px solid rgba(0,243,255,.16);border-radius:16px;padding:16px;text-align:left}
+.card-area.locked{background:linear-gradient(135deg,rgba(107,114,128,.10),rgba(55,65,81,.12));border-color:rgba(107,114,128,.25)}
+.card-area h3{color:var(--blue);margin-bottom:8px;font-size:1.08rem}
+.card-area.locked h3{color:#d1d5db}
+.card-area p{color:#ddd;font-size:.94rem;line-height:1.45;margin-bottom:10px}
+.status{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:18px;color:var(--pink);font-weight:bold;text-align:left}
+#question-text{font-size:1.03rem;line-height:1.6;margin:18px 0;text-align:left;word-break:break-word}
+.question-label{display:block;color:var(--yellow);font-weight:bold;margin-bottom:8px}
+.text-base{display:block;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:14px;margin:10px 0 14px;color:#f5f5f5;font-style:italic;line-height:1.65}
+.options-wrap{display:flex;flex-direction:column;gap:12px;margin-bottom:16px}
+.option-btn{width:100%;max-width:100%;margin:0;text-align:left;min-height:58px}
+.comment-box{display:none;text-align:left;margin-top:14px;padding:14px;border-radius:12px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.04);line-height:1.55;color:#eee}
+.result-number{font-size:3rem;color:var(--blue);margin:12px 0;font-weight:900}
+.result-sub{font-size:1.12rem;color:#ddd;margin-bottom:10px}
+.mini{color:var(--muted);font-size:.96rem;line-height:1.5}
+.lock-box{max-width:780px;margin:0 auto;background:linear-gradient(135deg,rgba(255,212,0,.10),rgba(255,0,230,.10));border:1px solid rgba(255,212,0,.25);border-radius:20px;padding:28px 18px;box-shadow:0 0 20px rgba(255,212,0,.12)}
+.lock-box h2{color:var(--yellow);font-size:2rem;margin-bottom:14px}
+.lock-box p{color:#f3f4f6;line-height:1.6;margin-bottom:12px}
+@media(max-width:700px){.grid-areas{grid-template-columns:1fr}.box{padding:15px 10px}#question-text{font-size:1rem}.btn{font-size:.95rem;padding:13px 10px}}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>REVISÃO FINAL ENEM TESTE GRÁTIS</h1>
+<p>TESTE: 2 MÓDULOS • 5 QUESTÕES CADA</p>
+</header>
+
+<div id="app"></div>
+
+<audio id="audio-bg" loop preload="auto" playsinline>
+<source src="https://cdn.pixabay.com/download/audio/2022/01/18/audio_d0a13f69d2.mp3?filename=tension-103701.mp3" type="audio/mpeg">
+</audio>
+<audio id="audio-correct" preload="auto" playsinline>
+<source src="https://cdn.pixabay.com/download/audio/2021/08/04/audio_0625c1539c.mp3?filename=success-1-6297.mp3" type="audio/mpeg">
+</audio>
+<audio id="audio-wrong" preload="auto" playsinline>
+<source src="https://cdn.pixabay.com/download/audio/2021/08/04/audio_c6ccf3232f.mp3?filename=error-126627.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+const PREMIUM_URL="COLE_AQUI_O_LINK_PREMIUM_REVISAO_FINAL";
+
+const app=document.getElementById("app");
+const audioBg=document.getElementById("audio-bg");
+const audioCorrect=document.getElementById("audio-correct");
+const audioWrong=document.getElementById("audio-wrong");
+
+audioBg.volume=.025;
+audioCorrect.volume=.55;
+audioWrong.volume=.55;
+
+let audioLiberado=false;
+let areaAtual="";
+let questoesAtuais=[];
+let indiceQuestao=0;
+let acertosObjetivas=0;
+let questaoRenderizadaAtual=null;
+let travado=false;
+
+document.addEventListener("click",destravarAudio,{once:true});
+document.addEventListener("touchstart",destravarAudio,{once:true});
+
+function destravarAudio(){
+ if(audioLiberado)return Promise.resolve(true);
+ audioBg.muted=true;
+ return audioBg.play().then(()=>{
+  audioBg.pause();audioBg.currentTime=0;audioBg.muted=false;audioLiberado=true;
+  audioCorrect.play().then(()=>{audioCorrect.pause();audioCorrect.currentTime=0}).catch(()=>{});
+  audioWrong.play().then(()=>{audioWrong.pause();audioWrong.currentTime=0}).catch(()=>{});
+  return true;
+ }).catch(()=>false);
+}
+function tocarAudioFundo(){if(!audioLiberado)return;audioBg.currentTime=0;audioBg.play().catch(()=>{})}
+function pararAudioFundo(){audioBg.pause();audioBg.currentTime=0}
+function tocarAcerto(){audioCorrect.currentTime=0;audioCorrect.play().catch(()=>{})}
+function tocarErro(){audioWrong.currentTime=0;audioWrong.play().catch(()=>{})}
+
+const areas=[
+{nome:"Linguagens + Interpretação",descricao:"Módulo liberado no teste grátis.",liberada:true},
+{nome:"Humanas + Atualidades",descricao:"Módulo liberado no teste grátis.",liberada:true},
+{nome:"Natureza",descricao:"Disponível apenas na versão premium.",liberada:false},
+{nome:"Matemática",descricao:"Disponível apenas na versão premium.",liberada:false},
+{nome:"Redação",descricao:"Disponível apenas na versão premium.",liberada:false}
+];
+
+function criarObjetiva(area,numero,base,q,o,c,coment){return{area,numero,base,q,o,c,coment}}
+function gerarAreaBase(nomeArea,lista){return lista.map((item,i)=>criarObjetiva(nomeArea,i+1,item.base,item.q,item.o,item.c,item.coment))}
+function embaralharAlternativas(questao){
+ const pares=questao.o.map((texto,idx)=>({texto,correta:idx===questao.c}));
+ for(let i=pares.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[pares[i],pares[j]]=[pares[j],pares[i]]}
+ return{...questao,opcoesRenderizadas:pares.map(p=>p.texto),corretaRenderizada:pares.findIndex(p=>p.correta)}
+}
+
+const bancoQuestoes={
+"Linguagens + Interpretação":gerarAreaBase("Linguagens + Interpretação",[
+{base:"Na reta final, interpretação é uma das habilidades mais importantes do ENEM.",q:"Interpretar um texto significa:",o:["Compreender sentido e intenção","Decorar palavras","Copiar frases","Ignorar contexto"],c:0,coment:"Interpretar envolve compreender sentido, contexto e intenção comunicativa."},
+{base:"Textos argumentativos aparecem em várias áreas da prova.",q:"O argumento serve para:",o:["Defender uma ideia","Criar confusão","Substituir o tema","Evitar opinião"],c:0,coment:"Argumentos sustentam uma ideia ou ponto de vista."},
+{base:"Coesão ajuda a conectar partes do texto.",q:"Um conectivo de conclusão é:",o:["Portanto","Mas","Embora","Além disso"],c:0,coment:"'Portanto' indica conclusão."},
+{base:"Gêneros textuais possuem finalidade comunicativa.",q:"Uma notícia tem como objetivo principal:",o:["Informar","Vender sempre","Criar poesia","Fazer cálculo"],c:0,coment:"A notícia informa acontecimentos de interesse público."},
+{base:"A linguagem formal é exigida em contextos acadêmicos.",q:"Qual alternativa evita linguagem informal?",o:["A situação exige análise cuidadosa.","Tá tudo muito complicado.","Esse negócio é doido.","A galera não liga."],c:0,coment:"A primeira alternativa usa linguagem formal e adequada."}
+]),
+
+"Humanas + Atualidades":gerarAreaBase("Humanas + Atualidades",[
+{base:"Democracia envolve participação cidadã e respeito às instituições.",q:"Um elemento essencial da democracia é:",o:["Participação popular","Censura permanente","Fim das eleições","Poder absoluto"],c:0,coment:"Democracia exige participação social e escolha de representantes."},
+{base:"Atualidades exigem conexão entre fatos e problemas sociais.",q:"Fake news podem prejudicar:",o:["Decisões políticas e sociais","Apenas jogos","Somente esportes","Nada na sociedade"],c:0,coment:"Desinformação afeta eleições, saúde pública e convivência social."},
+{base:"Globalização intensifica relações entre países.",q:"Um efeito da globalização é:",o:["Interdependência econômica","Isolamento total","Fim do comércio","Ausência de tecnologia"],c:0,coment:"Países ficam mais conectados por comércio, cultura e informação."},
+{base:"Cidadania envolve direitos, deveres e participação social.",q:"Exercer cidadania significa:",o:["Participar e respeitar direitos","Ignorar problemas coletivos","Descumprir leis","Recusar participação"],c:0,coment:"Cidadania envolve participação e responsabilidade social."},
+{base:"A crise climática aparece ligada a desigualdade e economia.",q:"Mudanças climáticas podem intensificar:",o:["Eventos extremos","Estabilidade total","Fim das secas","Ausência de enchentes"],c:0,coment:"Secas, enchentes e ondas de calor podem se tornar mais frequentes ou intensas."}
+])
+};
+
+function irParaPremium(){window.location.href=PREMIUM_URL}
+
+function mostrarMenu(){
+ pararAudioFundo();
+ app.innerHTML=`
+ <div class="box">
+ <h2 style="color:var(--blue);margin-bottom:8px;">Escolha um módulo</h2>
+ <p class="mini">No teste grátis você libera <strong>2 módulos com 5 questões cada</strong>. Os demais ficam bloqueados para a versão premium.</p>
+ <div class="grid-areas">
+ ${areas.map(area=>`
+ <div class="card-area ${area.liberada?"":"locked"}">
+ <h3>${area.liberada?area.nome:"🔒 "+area.nome}</h3>
+ <p>${area.descricao}</p>
+ <button class="btn ${area.liberada?"":"btn-lock"}" onclick="${area.liberada?`iniciarArea('${area.nome.replace(/'/g,"\\'")}')`:`mostrarBloqueio()`}">
+ ${area.liberada?"Entrar neste módulo":"Desbloquear no premium"}
+ </button>
+ </div>`).join("")}
+ </div>
+ </div>`;
+}
+
+function mostrarBloqueio(){
+ pararAudioFundo();
+ app.innerHTML=`
+ <div class="lock-box">
+ <h2>🔒 MÓDULO PREMIUM</h2>
+ <p>Esse módulo está disponível apenas na versão completa da Revisão Final ENEM.</p>
+ <p>No premium você desbloqueia <strong>5 módulos e 50 questões</strong> para revisar antes da prova.</p>
+ <button class="btn btn-premium" onclick="irParaPremium()">LIBERAR ACESSO COMPLETO</button>
+ <button class="btn btn-voltar" onclick="mostrarMenu()">VOLTAR AO MENU</button>
+ </div>`;
+}
+
+async function iniciarArea(nomeArea){
+ await destravarAudio();
+ areaAtual=nomeArea;
+ questoesAtuais=bancoQuestoes[nomeArea]||[];
+ indiceQuestao=0;
+ acertosObjetivas=0;
+ questaoRenderizadaAtual=null;
+ travado=false;
+
+ if(!questoesAtuais.length){
+  app.innerHTML=`<div class="box"><h2 style="color:var(--red);">Erro ao abrir o módulo</h2><button class="btn btn-voltar" onclick="mostrarMenu()">Voltar ao menu</button></div>`;
+  return;
+ }
+
+ setTimeout(()=>{tocarAudioFundo()},120);
+ carregarQuestao();
+}
+
+function montarEnunciado(questao){
+ return`
+ <span class="question-label">Base para resolução:</span>
+ <span class="text-base">${questao.base}</span>
+ <span class="question-label">Pergunta:</span>
+ ${questao.q}`;
+}
+
+function carregarQuestao(){
+ travado=false;
+ const questao=questoesAtuais[indiceQuestao];
+ const total=questoesAtuais.length;
+ questaoRenderizadaAtual=embaralharAlternativas(questao);
+
+ let html=`
+ <div class="box">
+ <div class="status">
+ <span>${areaAtual}</span>
+ <span>Questão ${indiceQuestao+1}/${total}</span>
+ </div>
+ <div id="question-text">${montarEnunciado(questaoRenderizadaAtual)}</div>
+ <div class="options-wrap">`;
+
+ questaoRenderizadaAtual.opcoesRenderizadas.forEach((alt,idx)=>{
+  html+=`<button class="btn option-btn" onclick="responderObjetiva(${idx})">${alt}</button>`;
+ });
+
+ html+=`
+ </div>
+ <div id="comentario" class="comment-box"></div>
+ <button id="btn-proxima" class="btn btn-next" style="display:none" onclick="proximaQuestao()">Próxima pergunta</button>
+ <button class="btn btn-voltar" onclick="mostrarMenu()">Voltar ao menu</button>
+ </div>`;
+
+ app.innerHTML=html;
+}
+
+function responderObjetiva(escolhida){
+ if(travado)return;
+ travado=true;
+
+ const botoes=document.querySelectorAll(".option-btn");
+ const correta=questaoRenderizadaAtual.corretaRenderizada;
+ const comentario=document.getElementById("comentario");
+ const btnProxima=document.getElementById("btn-proxima");
+
+ botoes.forEach((btn,idx)=>{
+  btn.disabled=true;
+  if(idx===correta)btn.classList.add("correct");
+ });
+
+ if(escolhida===correta){
+  acertosObjetivas++;
+  tocarAcerto();
+  comentario.innerHTML=`<strong style="color:var(--green);">Resposta correta.</strong><br>${questaoRenderizadaAtual.coment}`;
+ }else{
+  if(botoes[escolhida])botoes[escolhida].classList.add("wrong");
+  tocarErro();
+  comentario.innerHTML=`<strong style="color:var(--red);">Resposta incorreta.</strong><br>${questaoRenderizadaAtual.coment}`;
+ }
+
+ comentario.style.display="block";
+ btnProxima.style.display="block";
+}
+
+function proximaQuestao(){
+ indiceQuestao++;
+ if(indiceQuestao<questoesAtuais.length)carregarQuestao();
+ else finalizarArea();
+}
+
+function finalizarArea(){
+ pararAudioFundo();
+
+ const notaFinal=acertosObjetivas*40;
+ const totalPossivel=200;
+ let feedback="Você concluiu uma amostra rápida da Revisão Final ENEM. A versão premium possui 5 módulos e 50 questões.";
+
+ if(notaFinal>=160)feedback+=" Excelente começo. Você já pode avançar para o premium.";
+ else if(notaFinal>=100)feedback+=" Bom começo. No premium você revisa todos os eixos antes da prova.";
+ else feedback+=" Esse teste mostrou onde melhorar. O premium ajuda a revisar com foco na reta final.";
+
+ app.innerHTML=`
+ <div class="box">
+ <h2 style="color:var(--blue);">${areaAtual}</h2>
+ <div class="result-number">${notaFinal}/${totalPossivel}</div>
+ <div class="result-sub">Acertos: ${acertosObjetivas}/5</div>
+ <p class="mini" style="margin-bottom:18px;">${feedback}</p>
+
+ <button class="btn btn-premium" onclick="irParaPremium()">DESBLOQUEAR VERSÃO COMPLETA</button>
+ <button class="btn" onclick="iniciarArea('${areaAtual.replace(/'/g,"\\'")}')">Refazer este módulo</button>
+ <button class="btn btn-voltar" onclick="mostrarMenu()">Voltar ao menu</button>
+ </div>`;
+}
+
+mostrarMenu();
+</script>
+</body>
+</html>
