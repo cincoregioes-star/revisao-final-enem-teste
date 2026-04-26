@@ -51,7 +51,7 @@ header p{margin-top:10px;color:var(--pink);font-weight:800;font-size:clamp(.95re
 
 <header>
 <h1>REVISÃO FINAL ENEM TESTE GRÁTIS</h1>
-<p>TESTE: 2 MÓDULOS • 5 QUESTÕES CADA</p>
+<p>TESTE: 2 MÓDULOS • 5 QUESTÕES CADA • PREMIUM: 5 MÓDULOS E 50 QUESTÕES</p>
 </header>
 
 <div id="app"></div>
@@ -67,7 +67,7 @@ header p{margin-top:10px;color:var(--pink);font-weight:800;font-size:clamp(.95re
 </audio>
 
 <script>
-const PREMIUM_URL="COLE_AQUI_O_LINK_PREMIUM_REVISAO_FINAL";
+const PREMIUM_URL="https://pay.kiwify.com.br/A20iS8u";
 
 const app=document.getElementById("app");
 const audioBg=document.getElementById("audio-bg");
@@ -138,14 +138,20 @@ const bancoQuestoes={
 ])
 };
 
-function irParaPremium(){window.location.href=PREMIUM_URL}
+function irParaPremium(){
+ if(!PREMIUM_URL || PREMIUM_URL.includes("COLE_AQUI")){
+  alert("Link premium ainda não configurado.");
+  return;
+ }
+ window.open(PREMIUM_URL,"_blank","noopener");
+}
 
 function mostrarMenu(){
  pararAudioFundo();
  app.innerHTML=`
  <div class="box">
  <h2 style="color:var(--blue);margin-bottom:8px;">Escolha um módulo</h2>
- <p class="mini">No teste grátis você libera <strong>2 módulos com 5 questões cada</strong>. Os demais ficam bloqueados para a versão premium.</p>
+ <p class="mini">No teste grátis você libera <strong>2 módulos com 5 questões cada</strong>. Na versão premium você desbloqueia <strong>5 módulos e 50 questões</strong>.</p>
  <div class="grid-areas">
  ${areas.map(area=>`
  <div class="card-area ${area.liberada?"":"locked"}">
@@ -265,7 +271,7 @@ function finalizarArea(){
 
  const notaFinal=acertosObjetivas*40;
  const totalPossivel=200;
- let feedback="Você concluiu uma amostra rápida da Revisão Final ENEM. A versão premium possui 5 módulos e 50 questões.";
+ let feedback="Você concluiu uma amostra rápida da Revisão Final ENEM. A versão premium possui <strong>5 módulos</strong> e <strong>50 questões</strong>.";
 
  if(notaFinal>=160)feedback+=" Excelente começo. Você já pode avançar para o premium.";
  else if(notaFinal>=100)feedback+=" Bom começo. No premium você revisa todos os eixos antes da prova.";
