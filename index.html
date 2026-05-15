@@ -44,6 +44,59 @@ header p{margin-top:10px;color:var(--pink);font-weight:800;font-size:clamp(.95re
 .lock-box h2{color:var(--yellow);font-size:2rem;margin-bottom:14px}
 .lock-box p{color:#f3f4f6;line-height:1.6;margin-bottom:12px}
 @media(max-width:700px){.grid-areas{grid-template-columns:1fr}.box{padding:15px 10px}#question-text{font-size:1rem}.btn{font-size:.95rem;padding:13px 10px}}
+
+.radar-copa-reward-box{
+  width:100%;
+  max-width:780px;
+  margin:18px auto 16px;
+  padding:16px;
+  border-radius:18px;
+  background:linear-gradient(135deg,rgba(0,243,255,.10),rgba(255,212,0,.12));
+  border:1px solid rgba(255,212,0,.35);
+  box-shadow:0 0 18px rgba(255,212,0,.10);
+  text-align:center;
+}
+.radar-copa-reward-box h3{
+  color:var(--yellow);
+  margin-bottom:8px;
+  font-size:1.12rem;
+  text-transform:uppercase;
+}
+.radar-copa-reward-box p{
+  color:#e5e7eb;
+  line-height:1.5;
+  margin-bottom:12px;
+}
+.radar-copa-reward-box .radar-actions{
+  display:flex;
+  gap:10px;
+  justify-content:center;
+  flex-wrap:wrap;
+}
+.radar-copa-reward-box button,
+.radar-copa-reward-box a{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:100%;
+  max-width:320px;
+  min-height:48px;
+  border-radius:999px;
+  padding:12px 14px;
+  font-weight:900;
+  text-decoration:none;
+  border:1px solid rgba(255,212,0,.65);
+}
+.radar-copa-reward-box button{
+  background:linear-gradient(135deg,#fff4bf,#ffd400,#f59e0b);
+  color:#06142e;
+  cursor:pointer;
+}
+.radar-copa-reward-box a{
+  background:rgba(255,255,255,.06);
+  color:#fff;
+}
+
 </style>
 </head>
 
@@ -288,6 +341,42 @@ function finalizarArea(){
  <button class="btn" onclick="iniciarArea('${areaAtual.replace(/'/g,"\\'")}')">Refazer este módulo</button>
  <button class="btn btn-voltar" onclick="mostrarMenu()">Voltar ao menu</button>
  </div>`;
+}
+
+
+const RADAR_COPA_ALBUM_URL = "https://dev-orient-social.github.io/radar-copa-2026-com-album/album/index.html?v=4000";
+
+function calcularRecompensaRadarCopa() {
+  if (acertosObjetivas >= 5) return 5;
+  if (acertosObjetivas >= 3) return 3;
+  return 1;
+}
+
+function registrarRecompensaRadarCopa() {
+  try {
+    const figurinhas = calcularRecompensaRadarCopa();
+    const recompensa = {
+      tipo: "simulado_gratis",
+      idSimulado: "revisao-final-enem-teste-gratis",
+      origem: "Gabarito Max Revisão Final ENEM Teste Grátis",
+      figurinhas,
+      acertos: acertosObjetivas,
+      total: 5,
+      data: new Date().toISOString()
+    };
+
+    const lista = JSON.parse(localStorage.getItem("radar_copa_recompensas") || "[]");
+    lista.push(recompensa);
+    localStorage.setItem("radar_copa_recompensas", JSON.stringify(lista));
+
+    alert("🎁 Recompensa Radar Copa registrada: +" + figurinhas + " figurinha(s). Abra o álbum e vá em Resgates/Relatório para conferir.");
+  } catch(e) {
+    alert("Não foi possível registrar a recompensa agora. Abra o álbum e tente novamente.");
+  }
+}
+
+function abrirAlbumRadarCopa() {
+  window.open(RADAR_COPA_ALBUM_URL, "_blank", "noopener");
 }
 
 mostrarMenu();
